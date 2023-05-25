@@ -1,0 +1,28 @@
+name: Zip and Release on Tag
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  zip-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Zip folders
+      run: |
+        for d in */ ; do
+          TAG=${GITHUB_REF##*/}
+          (cd "$d" && zip -r "../imsafu-${d%/}-${TAG}.zip" .)
+        done
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ./*.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
