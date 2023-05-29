@@ -17,7 +17,11 @@ jobs:
       run: |
         for d in */ ; do
           TAG=${GITHUB_REF##*/}
-          (cd "$d" && zip -r "../imsafu-${d%/}-${TAG}.zip" .)
+          if [ "$d" = "opencart/" ]; then
+            (cd "$d" && zip -r "../opencart_imsafu_extension.ocmod.zip" .)
+          else
+            (cd "$d" && zip -r "../imsafu-${d%/}-${TAG}.zip" .)
+          fi
         done
 
     - name: Release
