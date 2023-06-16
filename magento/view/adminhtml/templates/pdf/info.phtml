@@ -1,0 +1,15 @@
+<?php
+/**
+ * Copyright © 2023 imsafu. All rights reserved.
+ * See LICENSE for license details.
+ */
+
+// @codingStandardsIgnoreFile
+/**
+ * @var $block \Imsafu\Payment\Block\Info
+ */
+?>
+<?php echo $this->escapeHtml($block->getMethod()->getTitle()) ?>
+    {{pdf_row_separator}}
+<?php echo __('imsafu Transaction ID: %1', $this->escapeHtml($block->getInfo()->getLastTransId())) ?>
+    {{pdf_row_separator}}

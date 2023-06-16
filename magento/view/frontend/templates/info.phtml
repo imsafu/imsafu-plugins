@@ -1,0 +1,17 @@
+<?php
+/**
+ * Copyright © 2023 imsafu. All rights reserved.
+ * See LICENSE for license details.
+ */
+
+// @codingStandardsIgnoreFile
+/**
+ * @var $block \Imsafu\Payment\Block\Info
+ */
+?>
+<dl class="payment-method imsafupayment">
+    <dt class="title"><?php echo $block->escapeHtml($block->getMethod()->getTitle()) ?></dt>
+    <dd class="content">
+        <strong><?php echo $block->escapeHtml(__('You will be redirected to our secure payment page when you place an order.')) ?></strong>
+    </dd>
+</dl>
